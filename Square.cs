@@ -8,6 +8,10 @@ namespace Figure
 {
     internal class Square : Figure
     {
+        public Square(double s)
+        {
+            Side = s;
+        }
         public double side;
         public double Side
         {
@@ -19,7 +23,7 @@ namespace Figure
             {
                 if (value < 0)
                 {
-                    side = 0;
+                    throw new Exception("Сторона задана неверно.");
                 }
                 else
                 {

@@ -8,6 +8,10 @@ namespace Figure
 {
     internal class Circle : Figure
     {
+        public Circle(double r)
+        {
+            Radius = r;
+        }
         public double radius;
         public double Radius
         {
@@ -19,7 +23,7 @@ namespace Figure
             {
                 if (value < 0)
                 {
-                    radius = 0;
+                    throw new Exception("Радиус задан неверно.");
                 }
                 else
                 {

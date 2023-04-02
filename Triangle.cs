@@ -4,6 +4,12 @@ namespace Figure
 {
     internal class Triangle : Figure
     {
+        public Triangle(double side1, double side2, double side3)
+        {
+            SideOne = side1;
+            SideTwo = side2;
+            SideThree = side3;
+        }
         public double sideOne;
         public double SideOne
         {
@@ -15,7 +21,7 @@ namespace Figure
             {
                 if (value < 0)
                 {
-                    sideOne = 0;
+                    throw new Exception("Сторона1 задана неверно.");
                 }
                 else
                 {
@@ -35,7 +41,7 @@ namespace Figure
             {
                 if (value < 0)
                 {
-                    sideTwo = 0;
+                    throw new Exception("Сторона2 задана неверно.");
                 }
                 else
                 {
@@ -55,7 +61,7 @@ namespace Figure
             {
                 if (value < 0)
                 {
-                    sideThree = 0;
+                    throw new Exception("Сторона3 задана неверно.");
                 }
                 else
                 {
@@ -71,13 +77,22 @@ namespace Figure
                 return 0.5 * (sideOne + sideTwo + sideThree);
             }
         }
+
         public override double Area
         {
             get
             {
-                return Math.Sqrt(HalfP * (HalfP - sideOne) * (HalfP - sideTwo) * (HalfP - sideThree));
+                if (SideOne<(SideTwo+SideThree) & (SideTwo<(SideOne+SideThree) & (SideThree<(SideOne+SideTwo))))
+                {
+                    return Math.Sqrt(HalfP * (HalfP - sideOne) * (HalfP - sideTwo) * (HalfP - sideThree));
+                }
+                else
+                {
+                    throw new Exception("Такой треугольник не существует.");
+                }
             }
         }
+
         public override double Perimeter
         {
             get
@@ -85,6 +100,7 @@ namespace Figure
                 return sideOne + sideTwo + sideThree;
             }
         }
+
         public override string ToString()
         {
             return $"Triangle Area: {Area}\nTriangle Perimeter: {Perimeter}\n";
